@@ -58,6 +58,10 @@ class Main:
         d = Button(self.window_3_adjacency, command=self.graph_aj, text="створити граф")
         d.pack()
 
+
+
+
+
     def graph_aj(self):
         self.A_2_adj=[]
         for i in range(self.number_of_vertex):
@@ -65,10 +69,61 @@ class Main:
                 if self.A_aj[i][j].get()=="1":
                     self.A_2_adj.append([i+1,j+1])
 
+        self.graph_color()
 
         G = nx.DiGraph()
         G.add_edges_from(self.A_2_adj, color='b')
         nx.draw(G, with_labels=True)
         plt.show()
+
+
+    def graph_color(self):
+        self.num_of_color = 0
+
+        self.list_of_color = [0 for i in range(self.number_of_vertex)]
+
+
+        while (0 in self.list_of_color):
+            self.num_of_color+=1
+
+            set_of_colored = []
+
+            for i in range(len(self.list_of_color)):
+                if self.list_of_color[i] == 0:
+                    set_of_colored.append(i)
+                    break
+
+
+            list_visited = [ True for i in range(self.number_of_vertex)]
+
+            B = 0
+
+            while (True in list_visited) :
+                A = set_of_colored[B]
+
+                list_visited[A]=False
+
+
+                for i in range(self.number_of_vertex):
+                    if [A,i] in self.A_2_adj or [i,A] in self.A_2_adj:
+                        list_visited[i]=False
+
+
+                for i in range(len(list_visited)):
+                    if list_visited[i] == True:
+                        set_of_colored.append(i)
+                        B+=1
+                        break
+
+            for i in range(len(self.list_of_color)):
+                if i in set_of_colored:
+                    self.list_of_color[i]=self.num_of_color
+
+
+
+        print(self.list_of_color)
+
+
+
 
 a=Main()
