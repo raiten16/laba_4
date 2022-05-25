@@ -73,7 +73,7 @@ class Main:
 
         G = nx.DiGraph()
         G.add_edges_from(self.A_2_adj, color='b')
-        nx.draw(G, with_labels=True)
+        nx.draw(G, with_labels=True,node_color=self.list_of_color)
         plt.show()
 
 
@@ -105,7 +105,7 @@ class Main:
 
 
                 for i in range(self.number_of_vertex):
-                    if [A,i] in self.A_2_adj or [i,A] in self.A_2_adj:
+                    if [A+1,i+1] in self.A_2_adj or [i+1,A+1] in self.A_2_adj:
                         list_visited[i]=False
 
 
@@ -114,6 +114,7 @@ class Main:
                         set_of_colored.append(i)
                         B+=1
                         break
+            print(set_of_colored )
 
             for i in range(len(self.list_of_color)):
                 if i in set_of_colored:
