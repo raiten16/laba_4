@@ -5,8 +5,16 @@ from tkinter.messagebox import *
 
 class Main:
     def __init__(self):
+
         self.window_3_adjacency = Tk()
-        self.window_3_adjacency.geometry("+500+250")
+        self.menu = Menu(self.window_3_adjacency)
+        self.menu_2 = Menu(self.menu, tearoff=0)
+        self.menu.add_cascade(label="Номер Варіанта", menu=self.menu_2)
+        self.menu_2.add_command(label="Номар варіанта", command=self.variant)
+        self.window_3_adjacency.configure(menu=self.menu)
+
+
+        self.window_3_adjacency.geometry("282x350+500+250")
         self.list = Listbox(self.window_3_adjacency, height=18)
 
         self.frame_3_adjacency = Frame(self.window_3_adjacency)
@@ -119,5 +127,15 @@ class Main:
             for i in range(len(self.list_of_color)):
                 if i in set_of_colored:
                     self.list_of_color[i]=self.num_of_color
+    def variant(self):
+        self.win_1 = Toplevel()
+        self.win_1.title("Номер варіанту")
+        self.win_1.geometry("250x50")
+        self.Group = 13
+        self.Num = 31
+        i = 1331 % 6 + 1
+        self.lable_info = Label(self.win_1,
+                                text=f"Моя група: IO-{self.Group}\nМій номер у групі: {self.Num}\nМій варіант: {i}", )
+        self.lable_info.pack()
 
 a=Main()
