@@ -114,17 +114,10 @@ class Main:
                         set_of_colored.append(i)
                         B+=1
                         break
-            print(set_of_colored )
+
 
             for i in range(len(self.list_of_color)):
                 if i in set_of_colored:
                     self.list_of_color[i]=self.num_of_color
-
-
-
-        print(self.list_of_color)
-
-
-
 
 a=Main()
