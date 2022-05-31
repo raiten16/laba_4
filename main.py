@@ -79,9 +79,15 @@ class Main:
 
         self.graph_color()
 
+        dict_of_vertex=dict()
+
+        for i in range(self.number_of_vertex):
+            dict_of_vertex[i+1]=self.list_of_color[i]
+
+
         G = nx.DiGraph()
         G.add_edges_from(self.A_2_adj, color='b')
-        nx.draw(G, with_labels=True,node_color=self.list_of_color)
+        nx.draw(G, with_labels=True ,nodelist=dict_of_vertex,node_color=self.list_of_color)
         plt.show()
 
 
